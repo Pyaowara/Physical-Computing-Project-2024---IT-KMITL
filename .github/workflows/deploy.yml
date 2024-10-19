@@ -3,7 +3,7 @@ name: Deploy Static Site with Environment Variables
 on:
   push:
     branches:
-      - main  # Only deploys when pushing to the main branch
+      - main
 
 jobs:
   deploy:
@@ -16,7 +16,7 @@ jobs:
       - name: Replace Environment Variables in JS
         run: |
           # Replace the placeholder in your JS file with the actual Blynk token from GitHub Secrets
-          sed -i 's/__BLYNK_TOKEN__/${{ secrets.BLYNK_TOKEN }}/g' ./path/to/your/script.js
+          sed -i 's/__BLYNK_TOKEN__/${{ secrets.BLYNK_TOKEN }}/g' ./script.js
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
