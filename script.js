@@ -1,19 +1,13 @@
-
-const brokerUrl = 'wss://mqtt-dashboard.com:8884/mqtt';
+const blynkApiUrl = process.env.BLYNK_TOKEN;
 const topics = {
-    co: { topic: 'skibidi/co', name: 'CO', units: 'ppm', max: 40 },
-    co2: { topic: 'skibidi/co2', name: 'CO2', units: 'ppm', max: 2000 },
-    nh4: { topic: 'skibidi/nh4', name: 'NH4', units: 'ppm', max: 50 },
-    alcohol: { topic: 'skibidi/alcohol', name: 'Alcohol', units: 'ppm', max: 100 },
+    co: { name: 'CO', units: 'ppm', virtualPort: 'v1' },
+    co2: { name: 'CO2', units: 'ppm', virtualPort: 'v3' },
+    alcohol: { name: 'Alcohol', units: 'ppm', virtualPort: 'v2' },
+    nh4: { name: 'NH4', units: 'ppm', virtualPort: 'v5' },
+    airQuality: { name: 'Air Quality', units: 'ppm', virtualPort: 'v7' },
 };
 
-
-
-
-const client = mqtt.connect(brokerUrl);
 const gaugesContainer = document.getElementById('gaugesContainer');
-
-
 
 function createGaugeElement(topicData) {
     const cardDiv = document.createElement('div');
@@ -23,7 +17,7 @@ function createGaugeElement(topicData) {
             <div class="card-body">
                 <h5 class="card-title">${topicData.name}</h5>
                 <div class="gauge-container">
-                    <span class="gauge-value" id="${topicData.topic}-value">--</span> <span class="units">${topicData.units}</span>
+                    <span class="gauge-value" id="${topicData.virtualPort}-value">--</span> <span class="units">${topicData.units}</span>
                 </div>
             </div>
         </div>
@@ -33,34 +27,28 @@ function createGaugeElement(topicData) {
     gaugesContainer.appendChild(cardDiv);
 }
 
-
-client.on('connect', () => {
-    console.log('Connected to MQTT broker');
+async function fetchBlynkData() {
     for (const key in topics) {
-      createGaugeElement(topics[key]);
+        const apiUrl = `${blynkApiUrl}${topics[key].virtualPort}`;
+        try {
+            const response = await fetch(apiUrl);
+            const data = await response.text();
 
+            console.log(`Response for ${topics[key].name}:`, data);
 
-        client.subscribe(topics[key].topic, (err) => {
-            if (err) {
-                console.error(`Failed to subscribe to ${topics[key].topic}:`, err);
+            const gaugeValueElement = document.getElementById(`${topics[key].virtualPort}-value`);
+
+            if (gaugeValueElement && data) {
+                gaugeValueElement.textContent = data;
             }
-        });
-    }
-
-});
-
-
-
-
-client.on('message', (topic, message) => {
-    const value = message.toString();
-    const gaugeValueElement = document.getElementById(`${topic}-value`); // Use template literal
-
-    if (gaugeValueElement) {
-        gaugeValueElement.textContent = value;
-        if (topic === 'skibidi/airquality') {
-            gaugeValueElement.classList.add('large-value');
+        } catch (error) {
+            console.error(`Error fetching data for ${topics[key].name}:`, error);
         }
-    
     }
-});
+}
+
+for (const key in topics) {
+    createGaugeElement(topics[key]);
+}
+
+setInterval(fetchBlynkData, 1000);
