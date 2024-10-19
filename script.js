@@ -4,7 +4,7 @@ const topics = {
     co2: { name: 'CO2', units: 'ppm', virtualPort: 'v3' },
     alcohol: { name: 'Alcohol', units: 'ppm', virtualPort: 'v2' },
     nh4: { name: 'NH4', units: 'ppm', virtualPort: 'v5' },
-    airQuality: { name: 'Air Quality', units: 'ppm', virtualPort: 'v7' },
+    airQuality: { name: 'Air Quality', units: '%', virtualPort: 'v7' },
 };
 
 const gaugesContainer = document.getElementById('gaugesContainer');
@@ -48,7 +48,15 @@ async function fetchBlynkData() {
 }
 
 for (const key in topics) {
-    createGaugeElement(topics[key]);
+    if (key !== 'airQuality') {
+        createGaugeElement(topics[key]);
+    }
 }
+
+createGaugeElement(topics.airQuality);
+const airQualityValueElement = document.getElementById('v7-value');
+    if(airQualityValueElement) {
+        airQualityValueElement.classList.add("large-value")
+    }
 
 setInterval(fetchBlynkData, 1000);
