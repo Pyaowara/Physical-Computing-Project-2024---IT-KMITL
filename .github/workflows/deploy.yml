@@ -11,12 +11,15 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Replace Environment Variables in JS
         run: |
           # Replace the placeholder in your JS file with the actual Blynk token from GitHub Secrets
           sed -i 's/__BLYNK_TOKEN__/${{ secrets.BLYNK_TOKEN }}/g' ./script.js
+
+      - name: Debug - Show script.js content
+        run: cat ./script.js
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
