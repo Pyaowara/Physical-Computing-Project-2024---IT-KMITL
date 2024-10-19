@@ -1,0 +1,76 @@
+body {
+    background-color: #f0f5f5; /* Soft gray background */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar {
+    background-color: #ffc107; /* Yellow navbar */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+    font-weight: bold;
+}
+
+
+.card {
+    border: none;
+    border-radius: 10px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    transition: transform 0.2s; /* Smooth hover effect */
+}
+
+
+.gauge-value { /* Style the value itself */
+    font-size: 2.5rem;
+    font-weight: 600;
+    color: #28a745; /* Green for good values */
+}
+
+
+
+.gauge-container {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.gauge-min-max {
+    font-size: 0.8rem;
+    color: #888; /* Lighter gray for min/max labels */
+}
+
+.units {
+    font-size: 1rem;
+    color: #555;
+}
+
+.card:hover {
+    transform: scale(1.02); /* Slightly enlarge on hover */
+}
+
+.air-quality-card { /* Specific styles for Air Quality card */
+    background-color: #fff;  /* White background for contrast */
+    border: 2px solid #28a745;  /* Green border */
+}
+
+.large-value {
+    font-size: 4rem; /* Much larger font size */
+    font-weight: 700;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .gauge-value {
+        font-size: 2rem; /* Smaller font size on smaller screens */
+    }
+    .air-quality-card { /* Make it full width */
+        width: 100%
+    }
+    .large-value {
+        font-size: 3rem; /* Slightly smaller on smaller screens */
+    }
+}
+
+.col-md-3 { /* 4 columns in one row */
+    width: calc(100% / 4);
+}
