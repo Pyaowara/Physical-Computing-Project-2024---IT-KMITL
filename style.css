@@ -1,10 +1,10 @@
 body {
-    background-color: #f0f5f5; /* Soft gray background */
+    background-color: #f0f5f5;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .navbar {
-    background-color: #ffc107; /* Yellow navbar */
+    background-color: #ffc107;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
@@ -12,22 +12,18 @@ body {
     font-weight: bold;
 }
 
-
 .card {
     border: none;
-    border-radius: 10px; /* Rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
-    transition: transform 0.2s; /* Smooth hover effect */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s;
 }
 
-
-.gauge-value { /* Style the value itself */
+.gauge-value {
     font-size: 2.5rem;
     font-weight: 600;
-    color: #28a745; /* Green for good values */
+    color: #28a745; 
 }
-
-
 
 .gauge-container {
     text-align: center;
@@ -36,7 +32,7 @@ body {
 
 .gauge-min-max {
     font-size: 0.8rem;
-    color: #888; /* Lighter gray for min/max labels */
+    color: #888;
 }
 
 .units {
@@ -45,32 +41,67 @@ body {
 }
 
 .card:hover {
-    transform: scale(1.02); /* Slightly enlarge on hover */
+    transform: scale(1.02);
 }
 
-.air-quality-card { /* Specific styles for Air Quality card */
-    background-color: #fff;  /* White background for contrast */
-    border: 2px solid #28a745;  /* Green border */
+.air-quality-card {
+    background-color: #fff;
+    border: 2px solid #28a745;
 }
 
 .large-value {
-    font-size: 4rem; /* Much larger font size */
+    font-size: 4rem;
     font-weight: 700;
 }
 
-/* Responsive adjustments */
-@media (max-width: 768px) {
-    .gauge-value {
-        font-size: 2rem; /* Smaller font size on smaller screens */
-    }
-    .air-quality-card { /* Make it full width */
-        width: 100%
-    }
-    .large-value {
-        font-size: 3rem; /* Slightly smaller on smaller screens */
-    }
+.col-md-3 {
+    width: calc(100% / 4);
 }
 
-.col-md-3 { /* 4 columns in one row */
-    width: calc(100% / 4);
+
+.jumbotron {
+    background-image: url('https://inwfile.com/s-cy/yf0j7x.gif');
+    background-size: cover; /* Ensure image covers full area */
+    background-attachment: fixed;
+    color: white;
+    padding: 200px 0; /* Adjust padding as needed */
+    text-align: center;
+    margin-bottom: 0;
+    width: 100%; /* Take full width */
+    height: 100vh; /* Take full viewport height */
+    position: relative; /* Needed for content positioning */
+}
+
+.jumbotron .container {
+    position: absolute; /* Position content within jumbotron */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center content vertically and horizontally */
+}
+
+.container.mt-5 {
+    margin-bottom: 50px;
+}
+
+.footer {
+    background-color: #ffc107; /* Match navbar color */
+    color: white;
+    padding: 15px 0; /* Adjust padding as needed */
+    text-align: center;
+    position: relative;
+    bottom: 0;
+    width: 100%;
+    clear: both;
+}
+
+@media (max-width: 768px) {
+    .gauge-value {
+        font-size: 2rem;
+    }
+    .air-quality-card {
+        width: 100%;
+    }
+    .large-value {
+        font-size: 3rem;
+    }
 }
