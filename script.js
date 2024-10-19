@@ -8,6 +8,7 @@ const topics = {
 };
 
 const gaugesContainer = document.getElementById('gaugesContainer');
+const airQualityValueElement = document.getElementById('skibidi/airquality-value');
 
 function createGaugeElement(topicData) {
     const cardDiv = document.createElement('div');
@@ -34,13 +35,14 @@ async function fetchBlynkData() {
             const response = await fetch(apiUrl);
             const data = await response.text();
 
-            console.log(`Response for ${topics[key].name}:`, data);
 
-            const gaugeValueElement = document.getElementById(`${topics[key].virtualPort}-value`);
-
-            if (gaugeValueElement && data) {
-                gaugeValueElement.textContent = data;
-            }
+            if (key === 'airQuality' && airQualityValueElement) {
+                airQualityValueElement.textContent = data;
+            } else {
+                const gaugeValueElement = document.getElementById(`${topics[key].virtualPort}-value`);
+                if (gaugeValueElement) {
+                    gaugeValueElement.textContent = data;
+                }}
         } catch (error) {
             console.error(`Error fetching data for ${topics[key].name}:`, error);
         }
@@ -52,11 +54,5 @@ for (const key in topics) {
         createGaugeElement(topics[key]);
     }
 }
-
-createGaugeElement(topics.airQuality);
-const airQualityValueElement = document.getElementById('v7-value');
-    if(airQualityValueElement) {
-        airQualityValueElement.classList.add("large-value")
-    }
 
 setInterval(fetchBlynkData, 1000);
