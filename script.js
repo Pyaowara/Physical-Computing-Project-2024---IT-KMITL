@@ -1,4 +1,4 @@
-const blynkApiUrl = process.env.BLYNK_TOKEN;
+const blynkApiUrl = process.env.NEXT_PUBLIC_BLYNK_TOKEN;;
 const topics = {
     co: { name: 'CO', units: 'ppm', virtualPort: 'v1' },
     co2: { name: 'CO2', units: 'ppm', virtualPort: 'v3' },
