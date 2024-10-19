@@ -1,33 +1,25 @@
-name: Deploy to GitHub Pages
+name: Deploy Static Site with Environment Variables
 
 on:
   push:
     branches:
-      - main  # Trigger the action when you push to the main branch
+      - main  # Only deploys when pushing to the main branch
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
-    
+
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v2
-        
-      - name: Set up Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'  # Use your desired Node.js version
 
-      - name: Install dependencies
-        run: npm install
-
-      - name: Build project
+      - name: Replace Environment Variables in JS
         run: |
-          echo "BLYNK_TOKEN=${{ secrets.BLYNK_TOKEN }}" > .env  # Write secret to .env file
-          npm run build  # Run your build process
+          # Replace the placeholder in your JS file with the actual Blynk token from GitHub Secrets
+          sed -i 's/__BLYNK_TOKEN__/${{ secrets.BLYNK_TOKEN }}/g' ./path/to/your/script.js
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./dist  # Update to your output folder (e.g., dist or build)
+          publish_dir: ./
