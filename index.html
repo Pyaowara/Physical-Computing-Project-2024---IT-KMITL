@@ -10,9 +10,9 @@
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-warning">
+    <nav class="navbar navbar-expand-lg navbar-light bg-warning fixed-top"> 
         <div class="container">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="#jumbotron">
                 <i class="bi bi-flower1"></i> Mustard Air Quality
             </a>
              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -21,7 +21,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="index.html">Dashboard</a>
+                        <a class="nav-link" href="#dashboard">Dashboard</a>
                     </li>
                      <li class="nav-item">
                         <a class="nav-link" href="member.html">Documentation</a>
@@ -31,7 +31,7 @@
         </div>
     </nav>
 
-    <div class="jumbotron">
+    <div class="jumbotron" id="jumbotron">
         <div class="container">
             <h1>Welcome to Mustard Air Quality</h1>
             <p>Real-time air quality monitoring.</p>
@@ -57,6 +57,91 @@
                 </div>
             </div>
         </div>
+        <div class="col-12 mt-4">
+            <h4 class="text-center mb-3">Air Quality Standards</h4>
+            <div class="accordion" id="airQualityAccordion">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingCO">
+                        <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCO" aria-expanded="true" aria-controls="collapseCO">
+                            CO (Carbon Monoxide)
+                        </button>
+                    </h2>
+                    <div id="collapseCO" class="accordion-collapse collapse show" aria-labelledby="headingCO" data-bs-parent="#airQualityAccordion">
+                        <div class="accordion-body">
+                            <p><strong>Good:</strong> 0-1 ppm</p>
+                            <p><strong>Moderate:</strong> 1-9 ppm</p>
+                            <p><strong>Bad:</strong> 9-35 ppm</p>
+                            <p><strong>Danger:</strong> 35+ ppm - Exposure to 35 ppm for 8 hours can cause health issues.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingCO2">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCO2" aria-expanded="false" aria-controls="collapseCO2">
+                            CO2 (Carbon Dioxide)
+                        </button>
+                    </h2>
+                    <div id="collapseCO2" class="accordion-collapse collapse" aria-labelledby="headingCO2" data-bs-parent="#airQualityAccordion">
+                        <div class="accordion-body">
+                            <p><strong>Good:</strong> 250-400 ppm (normal outdoor levels)</p>
+                            <p><strong>Moderate:</strong> 400-1000 ppm</p>
+                            <p><strong>Bad:</strong> 1000-2000 ppm</p>
+                            <p><strong>Danger:</strong> 2000+ ppm - Above 1000 ppm can cause drowsiness; prolonged exposure above 2000 ppm can be dangerous.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingAlcohol">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAlcohol" aria-expanded="false" aria-controls="collapseAlcohol">
+                            Alcohol (Ethanol or related volatiles)
+                        </button>
+                    </h2>
+                    <div id="collapseAlcohol" class="accordion-collapse collapse" aria-labelledby="headingAlcohol" data-bs-parent="#airQualityAccordion">
+                        <div class="accordion-body">
+                            <p><strong>Good:</strong> 0-10 ppm</p>
+                            <p><strong>Moderate:</strong> 10-50 ppm</p>
+                            <p><strong>Bad:</strong> 50-100 ppm</p>
+                            <p><strong>Danger:</strong> 100+ ppm - Alcohol vapor in confined spaces can pose health risks at higher concentrations.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingNH4">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNH4" aria-expanded="false" aria-controls="collapseNH4">
+                            NH4 (Ammonia)
+                        </button>
+                    </h2>
+                    <div id="collapseNH4" class="accordion-collapse collapse" aria-labelledby="headingNH4" data-bs-parent="#airQualityAccordion">
+                        <div class="accordion-body">
+                            <p><strong>Good:</strong> 0-25 ppm</p>
+                            <p><strong>Moderate:</strong> 25-35 ppm</p>
+                            <p><strong>Bad:</strong> 35-50 ppm</p>
+                            <p><strong>Danger:</strong> 50+ ppm - Ammonia exposure above 35 ppm can cause eye irritation, and at 50 ppm or more, it can cause respiratory issues.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingAirQuality">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAirQuality" aria-expanded="false" aria-controls="collapseAirQuality">
+                            Air Quality (Average of all gases)
+                        </button>
+                    </h2>
+                    <div id="collapseAirQuality" class="accordion-collapse collapse" aria-labelledby="headingAirQuality" data-bs-parent="#airQualityAccordion">
+                        <div class="accordion-body">
+                            <p><strong>Good:</strong> 90-100% of the dangerous concentration levels</p>
+                            <p><strong>Moderate:</strong> 75-90% of the dangerous concentration levels</p>
+                            <p><strong>Bad:</strong> 50-75% of the dangerous concentration levels</p>
+                            <p><strong>Danger:</strong> 0-50% or higher of dangerous concentration levels</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div> 
     </div>
     <footer class="footer bg-warning text-white py-3">
         <div class="container text-center">
@@ -64,5 +149,6 @@
         </div>
       </footer>
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
