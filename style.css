@@ -74,7 +74,7 @@ body {
 
 
 .jumbotron {
-    background-image: url('https://inwfile.com/s-cy/yf0j7x.gif');
+    background-image: url('picture/mustard.png');
     background-size: cover;
     background-attachment: fixed;
     color: white;
@@ -110,7 +110,7 @@ body {
 
 .button-6 {
   align-items: center;
-  background-color: #99690086;
+  background-color: #ffae00;
   border: 1px solid rgba(0, 0, 0, 0.1);
   border-radius: .25rem;
   box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
